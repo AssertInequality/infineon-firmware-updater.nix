@@ -29,7 +29,7 @@ stdenv.mkDerivation {
     # makefileEntry
   ];
 
-  setSourceRoot = "sourceRoot=$(pwd)";
+  setSourceRoot = "sourceRoot=$(pwd)/build";
   # setSourceRoot = "sourceRoot=$(pwd)/build";
   preUnpack = "mkdir build";
   unpackCmd = ''
