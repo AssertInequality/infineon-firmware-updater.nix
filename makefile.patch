@@ -1,0 +1,39 @@
+--- a/TPMFactoryUpd/makefile
++++ b/TPMFactoryUpd/makefile
+@@ -13,6 +13,7 @@
+ #
+ # The makefile uses the gcc compiler.
+ #
++STRIP=strip --strip-unneeded $@  # Don't strip if you want to debug
+ #FPACK+= -fpack-struct # Don't pack structs globally. This would crash OpenSSL decrypt operation
+ 
+ # Basic compiler options
+@@ -21,7 +22,6 @@
+ 	-Wextra \
+ 	-std=gnu1x -Wpedantic \
+ 	-Wno-missing-field-initializers \
+-	-Werror \
+ 	-Wshadow \
+ 	-Wcast-align \
+ 	-Wswitch-default \
+@@ -34,8 +34,12 @@
+ 	-Wno-gnu-zero-variadic-macro-arguments \
+ 	-Wno-cast-align
+ 
++CPPFLAGS+= \
++	-Wimplicit-fallthrough=0
++
+ # Export compiler flags to sub-makefiles
+ export CFLAGS
++export CPPFLAGS
+ export CC
+ 
+ LDFLAGS+=\
+@@ -118,6 +122,7 @@
+ 	$(MAKE) -C ../Common/Crypt
+ 	# And run the actual makefile job
+ 	$(CC) $^ -o $@ $(CFLAGS) $(LDFLAGS)
++	$(STRIP)
+ 
+ clean:
+ 	# Call shared sub-makefiles to cleanup archives
