@@ -15,7 +15,6 @@ let
       hash = "sha256-NVSRp7T/Va3jklFMJWP+CjQoJlP7ftcHy0rhDOJuuHE=";
     };
     makefilePatch = ./makefile.patch;
-    # makefileEntry = ./Makefile;
   };
 in
 stdenv.mkDerivation {
@@ -30,7 +29,6 @@ stdenv.mkDerivation {
   ];
 
   setSourceRoot = "sourceRoot=$(pwd)/build";
-  # setSourceRoot = "sourceRoot=$(pwd)/build";
   preUnpack = "mkdir build";
   unpackCmd = ''
     tar -xzf $curSrc -C $(pwd)/build 2>/dev/null ||\
@@ -49,16 +47,10 @@ stdenv.mkDerivation {
     "openssl-1.1.patch"
     "makefile.patch"
   ];
-  postPatch = ''
-    cat > Makefile<<EOF
-    .PHONY: build
-
-    build:
-    ''\tmake -C TPMFactoryUpd all
-    EOF
-  '';
 
   dontConfigure = true;
+
+  makeFlags = [ "-C" "TPMFactoryUpd" "all" ];
 
   installPhase = ''
     mkdir -p $out/bin
