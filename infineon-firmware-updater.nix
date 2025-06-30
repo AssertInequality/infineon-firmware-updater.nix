@@ -54,8 +54,8 @@ in
 stdenv.mkDerivation {
   pname = "infineon-firmware-updater";
   inherit version;
-  buildInputs = [ openssl_1_1 openssl_1_1.dev ];
   inherit src;
+  buildInputs = [ openssl_1_1 ];
   sourceRoot = ".";
 
   patches = googlePatches ++ [
