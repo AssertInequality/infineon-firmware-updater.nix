@@ -1,15 +1,6 @@
 # Infineon firmware updater
 Infineon TPM firmware updater for Linux with Google patches
 
-## Package
-This is a nix flake/package based on [github:iavael/infineon-firmware-updater](https://github.com/iavael/infineon-firmware-updater)
-
-## HowTo
-
-Thanks to [Krystian Hebel](https://github.com/krystian-hebel) for nice howto
-
-https://blog.3mdeb.com/2019/2019-04-17-roca/
-
 ## Usage
 ```
 $ ./TPMFactoryUpd
@@ -81,6 +72,5 @@ https://gsdview.appspot.com/chromeos-localmirror/distfiles/infineon-firmware-upd
 
 Patches:
 * https://chromium.googlesource.com/chromiumos/overlays/chromiumos-overlay/+/master/chromeos-base/infineon-firmware-updater/
-* https://raw.githubusercontent.com/pcengines/apu2-documentation/master/docs/research/openssl_1_1_0.patch
 
 > **NOTE:** This is a legacy package that depends on `openssl_1_1` which is considered end-of-life and insecure. This package was built and tested on `x86_64-linux`.
